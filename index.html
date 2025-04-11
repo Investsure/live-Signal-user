@@ -1,32 +1,16 @@
-// src/components/UserSignalViewer.jsx
-import React, { useEffect, useState } from "react";
-import { db } from "../firebase";  // firebase.js থেকে db ইমপোর্ট করা
-import { doc, onSnapshot } from "firebase/firestore";
-
-const UserSignalViewer = () => {
-  const [signalData, setSignalData] = useState({ signal: "OFF", result: "" });
-
-  useEffect(() => {
-    const unsubscribe = onSnapshot(doc(db, "signals", "currentSignal"), (doc) => {
-      setSignalData(doc.data());
-    });
-
-    return () => unsubscribe();  // cleanup on component unmount
-  }, []);
-
-  return (
-    <div className="signal-viewer">
-      <h2>Current Signal</h2>
-      <div className="signal">
-        Signal: <strong>{signalData.signal}</strong>
-      </div>
-      {signalData.result && (
-        <div className="result">
-          Result: <strong>{signalData.result}</strong>
-        </div>
-      )}
-    </div>
-  );
-};
-
-export default UserSignalViewer;
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="HGZY Game Signal Viewer" />
+    <title>HGZY Game Signal Viewer</title>
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div> <!-- React অ্যাপ এখানে লোড হবে -->
+  </body>
+</html>
